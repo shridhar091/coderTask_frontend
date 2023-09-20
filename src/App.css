@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+/* Styles for Navbar */
+*{
+  margin: 0;
+  padding: 0;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
+  background-color: black;
+  color: white; 
+  padding: 2px; 
   display: flex;
-  flex-direction: column;
+  height: 50px;
+  min-width: 100vw;
+  position: fixed;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+/* .navbar ul{
+  overflow: auto;
+} */
+.navbar li{
+  margin: 5px;
+   float: left;
+   list-style: none;
+}
+.navbar a{
+   text-decoration: none;
+   color: white;
+   margin: 10px 10px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Styles for the background image */
+.bg-image{
+  margin: 0; 
+  padding: 0; 
+  background-image: url('./img/man-working-office-with-holograms-cityscape\ 1.png');
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* Register Form */
+.center-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Set the container height to fill the viewport height */
+
+
+}
+
+/* Navword */
+
+#navword{
+font-family: 'Courier New', Courier, monospace;
+}
+
+/* Heading */
+.heading{
+  margin-top: -5px;
+  background-image: url('./img/Page-1.png');
+  width: 151.56px;
+  height: 23.21px;
+  margin:10px;
+}
+.ul{
+  padding-left: 50px;
+}
+
+/* button */
+#bg-button{
+  /* width: 300px;
+  height:  55px; */
+  padding: 16px, 24px, 16px, 24px;
+  border-radius: 38px;
+  gap: 10px;
+  background-color: #F74542;
+}
+
+/* card */
+.card{
+  margin:0 auto;
+  height: 500px;
+  width: 500px;
+  background-color: white;
+  border-radius: 8px;
 }
