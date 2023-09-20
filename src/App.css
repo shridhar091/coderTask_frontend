@@ -13,9 +13,6 @@
   position: fixed;
   align-items: center;
 }
-/* .navbar ul{
-  overflow: auto;
-} */
 .navbar li{
   margin: 5px;
    float: left;

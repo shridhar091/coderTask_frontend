@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify'
 import axios from '../config/axios'
 
 export const CREATE_USER = 'CREATE_USER'
@@ -18,8 +19,18 @@ export const registerUser = (formData,reset) => {
                 reset()
                 console.log(result.data)
                 dispatch(createUser(result.data))
+                toast.success('Register Succesfull', {
+                    position: "top-right",
+                    autoClose: 1000,
+                    theme: "colored",
+                    });
             } catch (e) {
                 console.log(e.message)
+                toast.error(e.message, {
+                    position: "top-right",
+                    autoClose: 1000,
+                    theme: "colored",
+                    });
             }
         }
      )()}

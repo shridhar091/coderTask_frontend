@@ -10,11 +10,11 @@ const SignupForm = () => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [phonenumber, setPhoneNumber] = useState("");
-  const [proffesion, setProffesion] = useState("");
+  const [profession, setProffesion] = useState("");
   const [socialmedia, setSocialmedia] = useState("");
+  const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
-  const errors = {};
 
   const formData={
     firstName:firstName,
@@ -23,7 +23,7 @@ const SignupForm = () => {
     city:city,
     country:country,
     phonenumber:phonenumber,
-    proffesion:proffesion,
+    proffesion:profession,
     socialmedia:socialmedia
   }
 
@@ -70,9 +70,54 @@ const SignupForm = () => {
     setSocialmedia(e.target.value)
   }
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(registerUser(formData, reset));
+  // };
+  const validateForm = () => {
+    const validationErrors = {};
+
+    // Required field validation
+    if (!firstName) {
+      validationErrors.firstName = "First Name is required.";
+    }
+    if (!lastName) {
+      validationErrors.lastName = "Last Name is required.";
+    }
+    if (!email) {
+      validationErrors.email = "Email is required.";
+    }
+    if (!city) {
+      validationErrors.city = "City is required.";
+    }
+    if (!country) {
+      validationErrors.country = "Country is required.";
+    }
+    if (!profession) {
+      validationErrors.profession = "Profession is required.";
+    }
+    if(!phonenumber){
+      validationErrors.phonenumber = "phoneNumber is required.";
+    }
+    if(!socialmedia){
+      validationErrors.socialmedia = "socialmedia is required.";
+    }
+
+    // Email format validation
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (email && !emailPattern.test(email)) {
+      validationErrors.email = "Please enter a valid email address.";
+    }
+    setErrors(validationErrors);
+    return Object.keys(validationErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerUser(formData,reset))
+
+    if (validateForm()) {
+      dispatch(registerUser(formData, reset));
+    }
   };
 
   return (
@@ -82,15 +127,16 @@ const SignupForm = () => {
         <form onSubmit={handleSubmit} >
           <p style={{fontSize:'29px',fontFamily:'-moz-initial',marginTop:'50px',marginLeft:'50px'}}>Diplomats Sign Up</p>
           <input
-            style={{width:'400px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', marginTop:'10px'}}
+            style={{width:'400px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', marginTop:'10px', borderColor: errors.firstName ? "red" : ""}}
             type="text"
             value={firstName}
             onChange={handleFirstNameChange}
             placeholder="    First Name"
           />
+           
           <br/>
           <input
-          style={{width:'400px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px'}}
+          style={{width:'400px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', borderColor: errors.lastName ? "red" : ""}}
             type="text"
             value={lastName}
             onChange={handleLastNameChange}
@@ -98,7 +144,7 @@ const SignupForm = () => {
           />
           <br/>
           <input
-          style={{width:'173px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px'}}
+          style={{width:'173px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', borderColor: errors.city ? "red" : ""}}
             type="text"
             value={city}
             onChange={handleCityChange}
@@ -106,7 +152,7 @@ const SignupForm = () => {
           />
           
           <input
-          style={{width:'173px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px'}}
+          style={{width:'173px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', borderColor: errors.email ? "red" : ""}}
             type="email"
             value={email}
             onChange={handleEmailChange}
@@ -114,7 +160,7 @@ const SignupForm = () => {
           />
           <br/>
           <input
-          style={{width:'173px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px'}}
+          style={{width:'173px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', borderColor: errors.country ? "red" : ""}}
             type="text"
             value={country}
             onChange={handleCountryChange}
@@ -122,23 +168,23 @@ const SignupForm = () => {
           />
           
           <input
-          style={{width:'173px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px'}}
-            type="number"
+          style={{width:'173px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', borderColor: errors.phonenumber ? "red" : ""}}
+            type="text"
             value={phonenumber}
             onChange={handlePhonenumberChange}
             placeholder="   Phone No"
           />
           <br/>
           <input
-          style={{width:'400px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', marginTop:'10px'}}
+          style={{width:'400px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', marginTop:'10px', borderColor: errors.profession ? "red" : ""}}
             type="text"
-            value={proffesion}
+            value={profession}
             onChange={handleProffesionChange}
             placeholder="    Proffesion"
           />
           <br/>
           <input
-          style={{width:'400px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', marginTop:'10px'}}
+          style={{width:'400px', height:'30px', marginBottom:'20px',marginLeft:'50px',borderRadius:'5px', marginTop:'10px', borderColor: errors.socialmedia ? "red" : ""}}
             type="text"
             value={socialmedia}
             onChange={handleSocialmediaChange}

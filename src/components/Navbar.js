@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import "../App.css";
+import { ToastContainer, toast } from "react-toastify"
 import SignupForm from "./SignupForm";
 import About from "./About";
 import Home from "./Home";
@@ -41,6 +42,7 @@ const Navbar = () => {
       <Route path="/RegisterForm" component={SignupForm} exact={true} />
       <Route path="/about" component={About} exact={true} />
       <Route path="/" component={Home} exact={true} />
+      <ToastContainer />
     </div>
   );
 };
